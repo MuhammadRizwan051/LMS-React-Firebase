@@ -1,0 +1,133 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.button{
+  background-image: linear-gradient(to left, #AA44B1, #F3429A);
+}
+.login {
+  /* background-image: linear-gradient(to left #AA44B1, #F3429A); */
+  background-image: linear-gradient(to bottom, #86c4f5, #094675);
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-align: center;
+}
+.signup {
+  /* background-image: linear-gradient(to left #AA44B1, #F3429A); */
+  background-image: linear-gradient(to bottom, #86c4f5, #094675);
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-align: center;
+}
+.main{
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+}
+
+@media screen and (min-width:1250px){
+  .main{
+    width:25%
+  }
+}
+@media screen and (max-width:1249px){
+  .main{
+    width:35%
+  }
+}
+@media screen and (max-width:950px){
+  .main{
+    width:45%
+  }
+}
+@media screen and (max-width:700px){
+  .main{
+    width:50%
+  }
+}
+@media screen and (max-width:600px){
+  .main{
+    width:60%
+  }
+}
+@media screen and (max-width:600px){
+  .main{
+    width:70%
+  }
+}
+@media screen and (max-width:450px){
+  .main{
+    width:90%
+  }
+}
+
+
+@media screen and (min-width:1300px) {
+  .form_container{
+    width:60%;
+    margin: 0 auto
+  }
+}
