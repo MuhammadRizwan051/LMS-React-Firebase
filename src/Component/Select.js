@@ -10,7 +10,7 @@ function SelectBox(props) {
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select" 
-                // value={value}    
+                value={value}    
                 label={label}
                 // fullWidth
                 onChange={onChange}

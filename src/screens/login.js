@@ -15,7 +15,7 @@ function Login() {
     loginUser({ email, password })
       .then((success) => {
         if(email !== 'admin@gmail.com') {
-          navigate('/user')
+          navigate('/home')
         }
         else {
           navigate('/dashboard')

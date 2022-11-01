@@ -3,8 +3,9 @@ import Input from '../../Component/Input'
 import { Button, Grid, InputLabel, Typography } from '@mui/material'
 import SelectBox from '../../Component/Select'
 import { Box } from '@mui/system'
-// import Date_Picker from '../../Component/Date_Picker'
+import {sendData} from '../../config/firebasemethod';
 import '../../App.css'
+// import Date_Picker from '../../Component/Date_Picker'
 
 
 function Student_Form() {
@@ -17,6 +18,15 @@ function Student_Form() {
   }
 
   let addStudent = () => {
+    sendData({
+      StudentInfo: model,
+      // time: new Date(),
+      // id: id
+    },
+      `studentsRecord/`)
+      .then((StudentInfo => { console.log(StudentInfo) }))
+      .catch((err => { console.log(err) }))
+
     // sendData(model,`students/`)
     // .then((success)=>{
     //   console.log(success)
@@ -49,7 +59,7 @@ function Student_Form() {
           </Grid>
           <Grid item mt={5} md={6} sm={12} xs={12}>
             {/* <InputLabel id="demo-simple-select-label">Section</InputLabel> */}
-            <SelectBox label='Section' value='Section' onChange={(e) => { fillModel('section', e.target.value) }} datasource={[
+            <SelectBox label='Section' onChange={(e) => { fillModel('section', e.target.value) }} datasource={[
               {
                 id: 'a',
                 fullName: 'A'
@@ -82,7 +92,7 @@ function Student_Form() {
           <Date_Picker />
         </Grid> */}
           <Grid item mt={5} xs={12}>
-            <Button variant='contained' sx={{ width: 1 }} onClick={addStudent}>Submit</Button>
+            <Button variant='contained' sx={{ width: 1 }} onClick={addStudent} size='large'>Submit</Button>
           </Grid>
         </Grid>
       </Box>

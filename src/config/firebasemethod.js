@@ -125,7 +125,7 @@ let sendData = (obj, nodeName, id) => {
 let getData = (nodeName, id) => {
     let refernece = ref(database, `${nodeName}/${id ? id : ""}`);
     return new Promise((resolve, reject) => {
-      onChildAdded(refernece,
+      onValue(refernece,
         (snapshot) => {
           if (snapshot.exists()) {
             let data = snapshot.val();

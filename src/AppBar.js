@@ -1,24 +1,3 @@
-// import React from "react";
-// import {Link} from "react-router-dom";
-
-// function AppBar() {
-//   return (
-//     <>
-//       <Link to='/'>Home</Link>
-//       <Link to='/about'>About</Link>
-//       <Link to='/contact'>Contact</Link>
-//       <Link to='/dashboard'>Dashboard</Link>
-//     </>
-//   );
-// }
-
-// export default AppBar;
-
-
-
-
-
-
 
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -34,7 +13,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import './App.css'
 
 
 // const pages = ['Products', 'Pricing', 'Blog'];
@@ -59,8 +39,27 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  const nav_items = [
+    {
+      name: 'Registration',
+      url: 'registration-form'
+    },
+    {
+      name: 'Course',
+      url: 'course'
+    },
+    {
+      name: 'Quiz',
+      url: 'quiz'
+    },
+    {
+      name: 'Result',
+      url: 'result'
+    },
+  ]
+
   return (
-    <AppBar position="static" style={{backgroundColor:'black', height: '8vh'}}>
+    <AppBar position="static" style={{ backgroundColor: 'black', height: '8vh' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -111,12 +110,11 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              
+
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to='/' style={{textDecoration:'none'}}>Home</Link>
-                <Link to='/about' style={{textDecoration:'none'}}>About</Link>
-                <Link to='/contact' style={{textDecoration:'none'}}>Contact</Link>
-                <Link to='/dashboard' style={{textDecoration:'none'}}>Dashboard</Link>
+                {nav_items.map((e, i) => (
+                  <NavLink to={e.url} style={{ textDecoration: 'none' }} key={i}>{e.name}</NavLink>
+                ))}
               </MenuItem>
             </Menu>
           </Box>
@@ -139,11 +137,10 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, padding:'25px 0px', fontSize:'20px' }}>
-            <Link to='/' style={{color:'inherit', textDecoration:'none', flexGrow: 1}}>Home</Link>
-            <Link to='/about' style={{color:'inherit', textDecoration:'none', flexGrow: 1}}>About</Link>
-            <Link to='/contact' style={{color:'inherit', textDecoration:'none', flexGrow: 1}}>Contact</Link>
-            <Link to='/dashboard' style={{color:'inherit', textDecoration:'none', flexGrow: 1}}>Dashboard</Link>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, padding: '25px 0px', fontSize: '20px' }}>
+            {nav_items.map((e, i) => (
+              <NavLink to={e.url} style={{ textDecoration: 'none', color: 'inherit', textDecoration: 'none', flexGrow: 1 }} key={i}>{e.name}</NavLink>
+            ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

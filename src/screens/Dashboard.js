@@ -18,7 +18,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
-import Student_Form from "./Dashboard_screens/Student Form";
+import Enrolled_Students from './Dashboard_screens/Enrolled_Students';
 
 
 
@@ -33,10 +33,24 @@ function Dashboard(props) {
         setMobileOpen(!mobileOpen);
     };
 
-    const list = [{
-        name: 'Registration Form',
-        url: 'registration-form'
-    }]
+    const list = [
+        {
+            name: 'Enrolled Students',
+            url: 'enrolled-students'
+        },
+        {
+            name: 'Create Course',
+            url: 'create-course'
+        },
+        {
+            name: 'Create Quiz',
+            url: 'create-quiz'
+        },
+        {
+            name: 'Result',
+            url: 'result'
+        },
+    ]
 
     const drawer = (
         <div>
@@ -44,7 +58,7 @@ function Dashboard(props) {
             <Divider />
             <List>
                 {list.map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                    <ListItem key={index} disablePadding>
                         <ListItemButton onClick={() => navigate(text.url)}>
                             <ListItemIcon>
                                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -123,7 +137,7 @@ function Dashboard(props) {
                 <Toolbar />
 
                 <Routes>
-                    <Route path="registration-form" element={<Student_Form />} />
+                    <Route path="enrolled-students" element={<Enrolled_Students />} />
                 </Routes>
                 {/* Right Side */}
             </Box>
