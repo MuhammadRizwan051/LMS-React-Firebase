@@ -19,6 +19,9 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import Enrolled_Students from './Dashboard_screens/Enrolled_Students';
+import Course from './Dashboard_screens/Course';
+import Quiz from './Dashboard_screens/Quiz';
+import Result from './Dashboard_screens/Result';
 
 
 
@@ -36,19 +39,23 @@ function Dashboard(props) {
     const list = [
         {
             name: 'Enrolled Students',
-            url: 'enrolled-students'
+            url: 'enrolled-students',
+            element: <Enrolled_Students />
         },
         {
             name: 'Create Course',
-            url: 'create-course'
+            url: 'create-course',
+            element: <Course />
         },
         {
             name: 'Create Quiz',
-            url: 'create-quiz'
+            url: 'create-quiz',
+            element: <Quiz />
         },
         {
             name: 'Result',
-            url: 'result'
+            url: 'result',
+            element: <Result />
         },
     ]
 
@@ -136,10 +143,13 @@ function Dashboard(props) {
             >
                 <Toolbar />
 
-                <Routes>
-                    <Route path="enrolled-students" element={<Enrolled_Students />} />
-                </Routes>
                 {/* Right Side */}
+                <Routes>
+                    {list.map((e, i) => (
+                        <Route path={e.url} element={e.element} key={i} />
+                        ))}
+                    {/* <Route path="quiz" element={<Enrolled_Students />} /> */}
+                </Routes>
             </Box>
         </Box>
     );

@@ -1,7 +1,7 @@
 import React from 'react'
 import ResponsiveAppBar from '../AppBar'
-import Student_Form from './Dashboard_screens/Student Form'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Student_Form from './Student Form';
 
 
 function Home() {

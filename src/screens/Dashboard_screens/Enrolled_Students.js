@@ -15,7 +15,6 @@ import app from '../../config/firebaseconfig';
 
 
 export default function Enrolled_Students() {
-    // let [module, setModule] = useState({});
     let [stdData, setStdData] = useState([])
 
     const database = getDatabase(app)

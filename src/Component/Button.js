@@ -1,11 +1,13 @@
+import { Button } from '@mui/material'
 import React from 'react'
 
-function Button() {
+function MyButton(props) {
+    const {variant, onClick, color, label, disabled} = props
     return (
         <>
-            <button>Sample Button</button>
+            <Button variant={variant ?? 'contained'} onClick={onClick} color={color}>{label}</Button>
         </>
     )
 }
 
-export default Button
+export default MyButton

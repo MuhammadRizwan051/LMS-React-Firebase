@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Input from '../../Component/Input'
+import Input from '../Component/Input'
 import { Button, Grid, InputLabel, Typography } from '@mui/material'
-import SelectBox from '../../Component/Select'
+import SelectBox from '../Component/Select'
 import { Box } from '@mui/system'
-import {sendData} from '../../config/firebasemethod';
-import '../../App.css'
+import '../App.css'
+import { sendData } from '../config/firebasemethod'
 // import Date_Picker from '../../Component/Date_Picker'
 
 
@@ -24,16 +24,13 @@ function Student_Form() {
       // id: id
     },
       `studentsRecord/`)
-      .then((StudentInfo => { console.log(StudentInfo) }))
-      .catch((err => { console.log(err) }))
-
-    // sendData(model,`students/`)
-    // .then((success)=>{
-    //   console.log(success)
-    // })
-    // .catch((err)=>{
-    //   console.log(err)
-    // })
+      .then((StudentInfo => { 
+        console.log(StudentInfo); 
+        alert('Your Form has been submitted')
+      }))
+      .catch((err => { console.log(err); 
+        alert('Plz! submit again')
+       }))
   }
 
 
