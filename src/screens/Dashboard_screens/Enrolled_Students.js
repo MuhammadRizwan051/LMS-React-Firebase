@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CircularProgress, Container, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 // import MyTextField from '../components/mytextfield';
-import { getData } from '../../config/firebasemethod';
+// import { getData } from '../../config/firebasemethod';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,25 +9,25 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { getDatabase, onValue, ref } from 'firebase/database';
+import app from '../../config/firebaseconfig';
 
 
 
 export default function Enrolled_Students() {
     // let [module, setModule] = useState({});
     let [stdData, setStdData] = useState([])
-    let sendStdData = () => {
-        // console.log(module)
 
-        getData(`studentsRecord/`)
-            .then((res) => {
-                setStdData(res)
-                console.log(res)
-            })
-            .catch((err) => {
-                alert(err)
-            })
-    }
-    useEffect(() => { sendStdData() }, [])
+    const database = getDatabase(app)
+    console.log(stdData)
+
+    useEffect(() => {
+        const reference = ref(database, 'studentsRecord')
+        onValue(reference, e => {
+            const val = e.val()
+            setStdData(Object.values(val))
+        })
+    }, [])
     return (
         <>
             <Container sx={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;", backgroundColor: "white", padding: "15px", borderRadius: "5px", width: { xs: "100%", md: "100%" } }}>
@@ -100,13 +100,13 @@ export default function Enrolled_Students() {
                                                 // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                                 >
                                                     <TableCell component="th" scope="row">
-                                                        {`${row.firstName} ${row.lastName}`}
+                                                        {`${row.StudentInfo.firstName} ${row.StudentInfo.lastName}`}
                                                     </TableCell>
-                                                    <TableCell align="right">{row.fatherName}</TableCell>
-                                                    <TableCell align="right">{row.contact}</TableCell>
-                                                    <TableCell align="right">{row.course}</TableCell>
-                                                    <TableCell align="right">{row.section}</TableCell>
-                                                    <TableCell align="right">{row.cnic}</TableCell>
+                                                    <TableCell align="right">{row.StudentInfo.fatherName}</TableCell>
+                                                    <TableCell align="right">{row.StudentInfo.contact}</TableCell>
+                                                    <TableCell align="right">{row.StudentInfo.course}</TableCell>
+                                                    <TableCell align="right">{row.StudentInfo.section}</TableCell>
+                                                    <TableCell align="right">{row.StudentInfo.cnic}</TableCell>
                                                 </TableRow>
                                             ))
                                             : (
