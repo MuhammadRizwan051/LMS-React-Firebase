@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import React from 'react'
 
 function SelectBox(props) {
-    const { label, value, onChange, datasource } = props
+    const { label, value, onChange, disabled, datasource } = props
     return (
         <>
         <FormControl fullWidth>
@@ -14,6 +14,7 @@ function SelectBox(props) {
                 label={label}
                 // fullWidth
                 onChange={onChange}
+                disabled={disabled}
             >
                 {datasource && datasource.length > 0 ? datasource.map((e, i)=> <MenuItem value={e.id} key={i}>{e.fullName}</MenuItem>):null}
             </Select>
