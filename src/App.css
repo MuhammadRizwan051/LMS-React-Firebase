@@ -134,3 +134,9 @@
 .active{
   color:yellow !important;
 }
+
+/* Quiz Screen - Admin */
+
+.adminQuestion{
+  background-image: linear-gradient(to bottom, #141c22, #152938);
+}
