@@ -5,6 +5,7 @@ import SelectBox from '../Component/Select'
 import { Box } from '@mui/system'
 import '../App.css'
 import { sendData } from '../config/firebasemethod'
+import { setDate } from '../config/core/helperMethod'
 // import Date_Picker from '../../Component/Date_Picker'
 
 
@@ -18,10 +19,14 @@ function Student_Form() {
   }
 
   let addStudent = () => {
+    model.registrationDate = setDate(new Date())
+    model.isFeeSubmmitted = false
+    model.isApproved = false
+    model.isActive = false
+
+    console.log(model)
     sendData({
       StudentInfo: model,
-      // time: new Date(),
-      // id: id
     },
       `studentsRecord/`)
       .then((StudentInfo => { 

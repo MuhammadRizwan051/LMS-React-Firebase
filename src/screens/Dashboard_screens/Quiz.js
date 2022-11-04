@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
+import { sendData } from '../../config/firebasemethod'
 
 function Quiz() {
     const [isCreateQuiz, setIsCreateQuiz] = useState(false)
@@ -49,6 +50,19 @@ function Quiz() {
     let back = () => {
         setDisplay('inlineBlock')
         setShowQuiz(false)
+    }
+    let finalizeQuiz = () => {
+        sendData({
+            Quiz: model,
+          },
+            `quizData/`)
+            .then((StudentInfo => { 
+              console.log(StudentInfo); 
+              alert('Your Quiz has been submitted')
+            }))
+            .catch((err => { console.log(err); 
+              alert('Plz! submit again')
+             }))
     }
     return (
         <>
@@ -135,7 +149,7 @@ function Quiz() {
                                             ))}
                                         </Grid>
                                         <Grid item md={12} mx={3} >
-                                            <MyButton label='Finalize Quiz' />
+                                            <MyButton label='Finalize Quiz' onClick={finalizeQuiz} />
                                         </Grid>
                                     </Grid>
                                 </>

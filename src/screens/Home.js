@@ -2,6 +2,7 @@ import React from 'react'
 import ResponsiveAppBar from '../AppBar'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Student_Form from './Student Form';
+import Quiz from './Quiz';
 
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
       {/* <Student_Form /> */}
       <Routes>
         <Route path="registration-form" element={<Student_Form />} />
+        <Route path="quiz" element={<Quiz />} />
       </Routes>
 
     </>

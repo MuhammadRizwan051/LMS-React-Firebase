@@ -43,13 +43,13 @@ function Dashboard(props) {
             element: <Enrolled_Students />
         },
         {
-            name: 'Create Course',
-            url: 'create-course',
+            name: 'Course',
+            url: 'courseform',
             element: <Course />
         },
         {
-            name: 'Create Quiz',
-            url: 'create-quiz',
+            name: 'Quiz',
+            url: 'quizform',
             element: <Quiz />
         },
         {
@@ -148,7 +148,6 @@ function Dashboard(props) {
                     {list.map((e, i) => (
                         <Route path={e.url} element={e.element} key={i} />
                         ))}
-                    {/* <Route path="quiz" element={<Enrolled_Students />} /> */}
                 </Routes>
             </Box>
         </Box>
