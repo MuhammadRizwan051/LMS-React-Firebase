@@ -16,7 +16,7 @@ function SelectBox(props) {
                 onChange={onChange}
                 disabled={disabled}
             >
-                {datasource && datasource.length > 0 ? datasource.map((e, i)=> <MenuItem value={e.id} key={i}>{e.fullName}</MenuItem>):null}
+                {datasource && datasource.length > 0 ? datasource.map((e, i)=> <MenuItem value={e.fullName} key={i}>{e.fullName}</MenuItem>):null}
             </Select>
             </FormControl>
         </>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Course() {
+function CourseForm() {
   return (
     <div>Course</div>
   )
 }
 
-export default Course
+export default CourseForm

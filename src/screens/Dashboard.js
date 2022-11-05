@@ -19,9 +19,9 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import Enrolled_Students from './Dashboard_screens/Enrolled_Students';
-import Course from './Dashboard_screens/Course';
+import CourseForm from './Dashboard_screens/courseForm';
 import Quiz from './Dashboard_screens/Quiz';
-import Result from './Dashboard_screens/Result';
+import CreateResult from './Dashboard_screens/createResult';
 
 
 
@@ -45,7 +45,7 @@ function Dashboard(props) {
         {
             name: 'Course',
             url: 'courseform',
-            element: <Course />
+            element: <CourseForm />
         },
         {
             name: 'Quiz',
@@ -55,7 +55,7 @@ function Dashboard(props) {
         {
             name: 'Result',
             url: 'result',
-            element: <Result />
+            element: <CreateResult />
         },
     ]
 
