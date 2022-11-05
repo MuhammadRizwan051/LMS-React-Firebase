@@ -1,5 +1,5 @@
 import React from 'react'
-import ResponsiveAppBar from '../AppBar'
+// import ResponsiveAppBar from '../AppBar'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Student_Form from './Student Form';
 import Quiz from './Quiz';
@@ -8,7 +8,8 @@ import Quiz from './Quiz';
 function Home() {
   return (
     <>
-      <ResponsiveAppBar />
+    <h1>Home Page</h1>
+      {/* <ResponsiveAppBar /> */}
       {/* <Student_Form /> */}
       <Routes>
         <Route path="registration-form" element={<Student_Form />} />
