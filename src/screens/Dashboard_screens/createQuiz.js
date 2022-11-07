@@ -6,7 +6,7 @@ import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
 import { sendData } from '../../config/firebasemethod'
 
-function Quiz() {
+function CreateQuiz() {
     const [isCreateQuiz, setIsCreateQuiz] = useState(false)
     const [model, setModel] = useState({})
 
@@ -165,4 +165,4 @@ function Quiz() {
     )
 }
 
-export default Quiz
+export default CreateQuiz

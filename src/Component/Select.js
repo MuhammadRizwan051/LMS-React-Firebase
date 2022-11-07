@@ -1,18 +1,17 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import React from 'react'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 function SelectBox(props) {
     const { label, value, onChange, disabled, datasource } = props
     return (
         <>
-        <FormControl fullWidth>
+            <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">{label}</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select" 
                 value={value}    
                 label={label}
-                // fullWidth
                 onChange={onChange}
                 disabled={disabled}
             >

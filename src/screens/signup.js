@@ -5,24 +5,32 @@ import { signUpUser } from "../config/firebasemethod";
 import { Box } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 import '../App.css';
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 
 
 function Signup() {
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+
 
   let signUp = () => {
-    signUpUser({ email, password, userName: 'Abdul Basit Ahmed', contact: '313125' })
+    setIsLoading(true)
+    signUpUser({ email, password, userName })
       .then((success) => {
+        setIsLoading(false)
         // Signed in
         navigate('/login')
         console.log(success);
       })
       .catch((error) => {
+        setIsLoading(false)
         console.log(error);
       });
   };
   // const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,13 +40,21 @@ function Signup() {
         <Box className='main' px={4} py={5}>
           <h2 variant="h1" align="center" color="error">Signup
           </h2>
-          <Box mt={3} fullWidth>
+          <Box mt={3}>
             <Button variant="outlined" size="large" sx={{ width: '50%', fontWeight: 'bold', color: 'black' }} onClick={() => navigate('/login')}>
               Login
             </Button>
             <Button className='button' variant="contained" size="large" sx={{ width: '50%' }} onClick={() => navigate('/signup')}>
               Signup
             </Button>
+          </Box>
+          <Box mt={4}>
+            <TextField
+              label="UserName"
+              variant="outlined"
+              fullWidth
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </Box>
           <Box mt={4}>
             <TextField
@@ -59,7 +75,7 @@ function Signup() {
           </Box>
           <Box my={2}>
             <Button className='button' variant="contained" size="large" fullWidth onClick={signUp}>
-              SIGNUP
+              { isLoading ? <CircularProgress /> : 'SIGNUP'}
             </Button>
           </Box>
           <Box>

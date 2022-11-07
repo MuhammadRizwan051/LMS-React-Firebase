@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import Enrolled_Students from './Dashboard_screens/Enrolled_Students';
 import CourseForm from './Dashboard_screens/courseForm';
-import Quiz from './Dashboard_screens/Quiz';
+import Quiz from './Dashboard_screens/createQuiz';
 import CreateResult from './Dashboard_screens/createResult';
 
 

@@ -3,19 +3,25 @@ import { Typography, Button, TextField, Box } from "@mui/material";
 import { loginUser } from "../config/firebasemethod";
 import { Link, useNavigate } from "react-router-dom";
 import '../App.css';
+// import Loader from '../assets/loader.gif'
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 function Login() {
 
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   let login = () => {
-    loginUser({ email, password })
+    setIsLoading(true)
+    loginUser({ userName, email, password })
       .then((success) => {
-        if(email !== 'admin@gmail.com') {
-          navigate('/home')
+        setIsLoading(false)
+        if (email !== 'admin@gmail.com') {
+          navigate(`/${success.id.slice(0,8)}`)
         }
         else {
           navigate('/dashboard')
@@ -23,6 +29,7 @@ function Login() {
         console.log((success))
       })
       .catch((error) => {
+        setIsLoading(false)
         console.log(error)
       })
   };
@@ -31,15 +38,23 @@ function Login() {
     <>
       <Box className='login'>
         <Box className='main' px={4} py={5}>
-        <h2 variant="h1" align="center" color="error">Login
-        </h2>
-          <Box mt={3} fullWidth>
+          <h2 variant="h1" align="center" color="error">Login
+          </h2>
+          <Box mt={3}>
             <Button className='button' variant="contained" size="large" sx={{ width: '50%' }} onClick={() => navigate('/login')}>
               Login
             </Button>
             <Button variant="outlined" size="large" sx={{ width: '50%', fontWeight: 'bold', color: 'black' }} onClick={() => navigate('signup')}>
               SignUp
             </Button>
+          </Box>
+          <Box mt={4}>
+            <TextField
+              label="User Name"
+              variant="outlined"
+              fullWidth
+              onChange={(e) => setUserName(e.target.value)}
+            />
           </Box>
           <Box mt={4}>
             <TextField
@@ -60,11 +75,11 @@ function Login() {
           </Box>
           <Box my={2}>
             <Button className='button' variant="contained" size="large" fullWidth onClick={login}>
-              Login
+              { isLoading ? <CircularProgress /> : 'Login'}{" "}
             </Button>
           </Box>
           <Box>
-            <Typography sx={{fontWeight:'bold'}}>Create new account <Link to="/" style={{textDecoration:'none'}}>SIGN UP</Link></Typography> 
+            <Typography sx={{ fontWeight: 'bold' }}>Create new account <Link to="/" style={{ textDecoration: 'none' }}>SIGN UP</Link></Typography>
           </Box>
         </Box>
       </Box>

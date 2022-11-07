@@ -8,10 +8,30 @@ import SMSwitch from '../../Component/Switch'
 function CreateResult() {
   const [model, setModel] = useState({})
   const [courseStatus, setCourseStatus] = useState(false)
-
+  const [resultData, setResultData] = useState([
+    {
+      name:'ABC',
+      marks: 80,
+      rollNum: 'ABC123',
+      result:'Pass'
+    },
+    {
+      name:'ABC',
+      marks: 80,
+      rollNum: 'ABC123',
+      result:'Pass'
+    },
+    {
+      name:'ABC',
+      marks: 80,
+      rollNum: 'ABC123',
+      result:'Pass'
+    },
+  ])
 
   let submitForm = () => {
     model.isShowResult = courseStatus
+    model.result = resultData
     console.log(model)
   }
 
