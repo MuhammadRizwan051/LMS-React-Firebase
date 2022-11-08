@@ -56,7 +56,7 @@ function Signup() {
               onChange={(e) => setUserName(e.target.value)}
             />
           </Box>
-          <Box mt={4}>
+          <Box mt={2}>
             <TextField
               label="Email"
               variant="outlined"

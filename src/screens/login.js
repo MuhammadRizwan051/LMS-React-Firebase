@@ -19,13 +19,14 @@ function Login() {
     setIsLoading(true)
     loginUser({ userName, email, password })
       .then((success) => {
+        navigate(`/${success.id.slice(0, 8)}`)
         setIsLoading(false)
-        if (email !== 'admin@gmail.com') {
-          navigate(`/${success.id.slice(0,8)}`)
-        }
-        else {
-          navigate('/dashboard')
-        }
+        // if (email !== 'admin@gmail.com') {
+        //   navigate(`/${success.id.slice(0,8)}`)
+        // }
+        // else {
+        //   navigate('/dashboard')
+        // }
         console.log((success))
       })
       .catch((error) => {
@@ -44,7 +45,7 @@ function Login() {
             <Button className='button' variant="contained" size="large" sx={{ width: '50%' }} onClick={() => navigate('/login')}>
               Login
             </Button>
-            <Button variant="outlined" size="large" sx={{ width: '50%', fontWeight: 'bold', color: 'black' }} onClick={() => navigate('signup')}>
+            <Button variant="outlined" size="large" sx={{ width: '50%', fontWeight: 'bold', color: 'black' }} onClick={() => navigate('/signup')}>
               SignUp
             </Button>
           </Box>
@@ -56,7 +57,7 @@ function Login() {
               onChange={(e) => setUserName(e.target.value)}
             />
           </Box>
-          <Box mt={4}>
+          <Box mt={2}>
             <TextField
               label="Email"
               variant="outlined"
@@ -75,11 +76,11 @@ function Login() {
           </Box>
           <Box my={2}>
             <Button className='button' variant="contained" size="large" fullWidth onClick={login}>
-              { isLoading ? <CircularProgress /> : 'Login'}{" "}
+              {isLoading ? <CircularProgress /> : 'Login'}
             </Button>
           </Box>
           <Box>
-            <Typography sx={{ fontWeight: 'bold' }}>Create new account <Link to="/" style={{ textDecoration: 'none' }}>SIGN UP</Link></Typography>
+            <Typography sx={{ fontWeight: 'bold' }}>Create new account <Link to="/signup" style={{ textDecoration: 'none' }}>SIGN UP</Link></Typography>
           </Box>
         </Box>
       </Box>

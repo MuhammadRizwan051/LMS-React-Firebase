@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { getDatabase, ref, set, onValue, push, onChildAdded } from "firebase/database";
+import { getDatabase, ref, set, push, onValue, onChildAdded } from "firebase/database";
 import { Redirect } from "react-router-dom";
 
 
@@ -71,57 +71,48 @@ let loginUser = (obj) => {
   });
 };
 
-let signoutUser = () => {
-  return new Promise((resolve, reject) => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        resolve("user Logged Out successfully")
-      })
-      .catch((error) => {
-        // An error happened.
-        reject(error)
-      });
-  });
-};
-
 let checkUser = () => {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        resolve(uid);
-        // ...
-      } else {
+        // User is signed in
+        const uid = user.uid
+        resolve(uid)
+      }
+      else {
         // User is signed out
-        // ...
-        reject("no user is logged in!")
+        reject("No user is Login ..")
       }
     })
-
   })
 }
 
 let sendData = (obj, nodeName, id) => {
-  let postListRef
-  return new Promise((resolve, reject) => {
+  let postListRef;
 
+  return new Promise((resolve, reject) => {
     if (id) {
-      // edit case id is present
-      postListRef = ref(database, `${nodeName}/${id}`);
-    } else {
-      // add case id is not present
-      let addRef = ref(database, nodeName);
-      obj.id = push(addRef).key;
-      postListRef = ref(database, `${nodeName}/${obj.id}`);
+      // edit case
+      // id is present
+      postListRef = ref(database, `${nodeName}/${id}`)
+    }
+    else {
+      // add case
+      // id is not available
+      let addRef = ref(database, nodeName)
+      obj.id = push(addRef).key
+      postListRef = ref(database, `${nodeName}/${obj.id}`)
     }
     set(postListRef, obj)
-      .then(() => { resolve(`Data Send Successfully on this node ${nodeName}/${obj.id}`) })
-      .catch((err) => { reject(err) })
+      .then(() => {
+        console.log(`Data Send Successfully on this node ${nodeName}/${obj.id}`)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   })
 }
+
 
 let getData = (nodeName, id) => {
   let refernece = ref(database, `${nodeName}/${id ? id : ""}`);
@@ -147,4 +138,20 @@ let getData = (nodeName, id) => {
 };
 
 
-export { signUpUser, loginUser, checkUser, sendData, getData, signoutUser };
+// let signoutUser = () => {
+//   return new Promise((resolve, reject) => {
+//     signOut(auth)
+//       .then(() => {
+//         // Sign-out successful.
+//         resolve("user Logged Out successfully")
+//       })
+//       .catch((error) => {
+//         // An error happened.
+//         reject(error)
+//       });
+//   });
+// };
+
+
+
+export { signUpUser, loginUser, checkUser, sendData, getData };

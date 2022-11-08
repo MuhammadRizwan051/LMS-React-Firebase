@@ -25,10 +25,7 @@ function Student_Form() {
     model.isActive = false
 
     console.log(model)
-    sendData({
-      StudentInfo: model,
-    },
-      `studentsRecord/`)
+    sendData(model,`studentsRecord/`)
       .then((StudentInfo => { 
         console.log(StudentInfo); 
         alert('Your Form has been submitted')
