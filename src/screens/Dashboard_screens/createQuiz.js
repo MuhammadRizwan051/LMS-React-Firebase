@@ -1,6 +1,7 @@
 
 import { Box, Checkbox, FormControl, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
@@ -14,6 +15,7 @@ function CreateQuiz() {
     const [question, setQuestion] = useState('')
     const [option, setOption] = useState('')
     const [optionsArr, setOptionsArr] = useState([])
+    const [correctOptionsArr, setCorrectOptionsArr] = useState([])
 
     const [questions, setQuestions] = useState([])
 
@@ -35,12 +37,14 @@ function CreateQuiz() {
     }
 
     let submitQuestion = () => {
-        setQuestions([...questions, { 'question': question, 'options': optionsArr }])
+        setQuestions([{ 'question': question, 'options': optionsArr, 'correct': correctOptionsArr }])
         setQuestion('')
         setOption('')
         setOptionsArr([])
         console.log(questions)
         setShowQuiz(false)
+        setModel({ ...model, questions })
+        console.log(model)
     }
 
     let lockQuiz = () => {
@@ -52,17 +56,18 @@ function CreateQuiz() {
         setShowQuiz(false)
     }
     let finalizeQuiz = () => {
-        sendData({
-            Quiz: model,
-          },
-            `quizData/`)
-            .then((StudentInfo => { 
-              console.log(StudentInfo); 
-              alert('Your Quiz has been submitted')
+        sendData(model,
+            `Quiz/`)
+            .then((StudentInfo => {
+                console.log(StudentInfo);
+                alert('Your Quiz has been submitted')
             }))
-            .catch((err => { console.log(err); 
-              alert('Plz! submit again')
-             }))
+            .catch((err => {
+                console.log(err);
+                alert('Plz! submit again')
+            }))
+        setDisplay('inlineBlock')
+        setShowQuiz(false)
     }
     return (
         <>
@@ -96,24 +101,24 @@ function CreateQuiz() {
                         <>
                             <Grid container rowSpacing={4} columnSpacing={2} mt={4} sx={{ display: display }}>
                                 <Grid item md={12}>
-                                <FormControl fullWidth>
-                                    <Input value={question} label='Question' onChange={(e) => setQuestion(e.target.value)} />
-                                </FormControl>
+                                    <FormControl fullWidth>
+                                        <Input value={question} label='Question' onChange={(e) => setQuestion(e.target.value)} />
+                                    </FormControl>
                                 </Grid>
                                 <Grid item md={10} mt={4}>
                                     <Input value={option} label='Option' onChange={(e) => setOption(e.target.value)} size='small' />
                                     {optionsArr.map((x, i) => (
                                         <>
-                                            <Typography key={i}><Checkbox />{x}</Typography>
+                                            <Typography key={i}><Checkbox value={x} name={x} onChange={(x) => setCorrectOptionsArr(x.target.value)} />{x}</Typography>
                                         </>
                                     ))}
                                 </Grid>
                                 <Grid item md={2} mt={4}>
-                                    <MyButton onClick={addOption} label='Add' sx={{ width: 1}} size='large' />
+                                    <MyButton onClick={addOption} label='Add' sx={{ width: 1 }} size='large' />
                                 </Grid>
                                 <Grid item md={12} mt={4}>
                                     <MyButton onClick={submitQuestion} label='Submit Question' />
-                                {/* </Grid>
+                                    {/* </Grid>
                                 <Grid item md={6} mt={4}> */}
                                     <MyButton onClick={lockQuiz} label='Lock Quiz' />
                                 </Grid>
