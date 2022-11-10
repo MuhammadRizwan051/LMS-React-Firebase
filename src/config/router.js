@@ -7,6 +7,7 @@ import Signup from "../screens/signup";
 import NotFound from "../screens/NotFound";
 import Student_Form from "../screens/Student Form";
 import Quiz from "../screens/Quiz";
+import Result from "../screens/result";
 
 function AppRouter() {
   return (
@@ -16,6 +17,7 @@ function AppRouter() {
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="quiz" element={<Quiz />} />
+          <Route path="result" element={<Result />} />
           <Route path="/" element={<Student_Form />} />
           <Route path="/:id" element={<Home />} />
           <Route path="admin/*" element={<Dashboard />} />

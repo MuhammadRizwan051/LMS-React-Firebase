@@ -1,66 +1,110 @@
-import { Box, Grid } from '@mui/material'
-import React, { useState } from 'react'
-import MyButton from '../../Component/Button'
-import SelectBox from '../../Component/Select'
-import SMSwitch from '../../Component/Switch'
-// import SMSwitch from '../../Component/Switch'
+import { Box, CircularProgress, Grid } from "@mui/material";
+import React, { useState } from "react";
+import MyButton from "../../Component/Button";
+import SelectBox from "../../Component/Select";
+import SMSwitch from "../../Component/Switch";
+import { sendData } from "../../config/firebasemethod";
+// import loaderImage1 from "../../assets/loader.gif";
 
 function CreateResult() {
-  const [model, setModel] = useState({})
-  const [courseStatus, setCourseStatus] = useState(false)
+  const [model, setModel] = useState({});
+  const [isLoader, setIsLoader] = useState(false);
+  const [courseStatus, setCourseStatus] = useState(false);
   const [resultData, setResultData] = useState([
     {
-      name:'ABC',
-      marks: 80,
-      rollNum: 'ABC123',
-      result:'Pass'
+      name: "First",
+      marks: 60,
+      rollNum: "101",
+      result: "Pass",
     },
     {
-      name:'ABC',
-      marks: 80,
-      rollNum: 'ABC123',
-      result:'Pass'
+      name: "Second",
+      marks: 70,
+      rollNum: "102",
+      result: "Pass",
     },
     {
-      name:'ABC',
+      name: "Third",
       marks: 80,
-      rollNum: 'ABC123',
-      result:'Pass'
+      rollNum: "103",
+      result: "Pass",
     },
-  ])
+  ]);
 
   let submitForm = () => {
-    model.isShowResult = courseStatus
-    model.result = resultData
-    console.log(model)
-  }
+    setIsLoader(true);
+    model.isShowResult = courseStatus;
+    model.result = resultData;
+    console.log(model);
+    sendData(model, "results")
+      .then((res) => {
+        setIsLoader(false);
+        console.log(res);
+      })
+      .catch((err) => {
+        setIsLoader(false);
+        console.log(err);
+      });
+  };
+
 
   return (
     <>
+      {/* {isLoader ? (
+        <img src={loaderImage} width="100vw" alt="loader" />
+      ) : ( */}
       <Box>
         <Grid container>
           <Grid item md={4}>
-            <SMSwitch label='ABC' onChange={(e) => setCourseStatus(e.target.checked)} />
+            <SMSwitch
+              label="ABC"
+              onChange={(e) => setCourseStatus(e.target.checked)}
+            />
           </Grid>
           <Grid item md={4}>
-            <SelectBox label='Course' onChange={(e)=>setModel({...model, course: e.target.value})} datasource={[
-              {
-                id: 'wm',
-                fullName: 'Web & Mobile'
-              },
-              {
-                id: 'gd',
-                fullName: 'Graphic Designing'
-              },
-            ]} />
+            <SelectBox
+              label="Course"
+              onChange={(e) => setModel({ ...model, course: e.target.value })}
+              datasource={[
+                {
+                  id: "wm",
+                  fullName: "Web & Mobile",
+                },
+                {
+                  id: "gd",
+                  fullName: "Graphic Designing",
+                },
+              ]}
+            />
           </Grid>
           <Grid item md={4}>
-            <MyButton label='Submit' variant='contained' onClick={submitForm} />
+            <MyButton
+              label={isLoader ? <CircularProgress color='error' /> : "Submit"}
+              variant="contained"
+              onClick={submitForm}
+            />
+          </Grid>
+
+          <Grid item md={12}>
+            <table style={{ border: "1px solid black" }}>
+              {resultData.map((e, i) => (
+                <tbody>
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{e.name}</td>
+                    <td>{e.rollNum}</td>
+                    <td>{e.marks}</td>
+                    <td>{e.result}</td>
+                  </tr>
+                </tbody>
+              ))}
+            </table>
           </Grid>
         </Grid>
       </Box>
+      {/* )} */}
     </>
-  )
+  );
 }
 
-export default CreateResult
+export default CreateResult;
