@@ -9,8 +9,6 @@ import loaderImage from "../assets/loader.gif";
 
 
 function Quiz() {
-
-
   let [indexNumber, setIndexNumber] = useState(0)
   let [quiz, setQuiz] = useState([])
   let [isLoader, setIsLoader] = useState(true)

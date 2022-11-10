@@ -1,15 +1,16 @@
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React, { useState } from "react";
 import MyButton from "../../Component/Button";
 import SelectBox from "../../Component/Select";
 import SMSwitch from "../../Component/Switch";
 import { sendData } from "../../config/firebasemethod";
 // import loaderImage1 from "../../assets/loader.gif";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function CreateResult() {
   const [model, setModel] = useState({});
   const [isLoader, setIsLoader] = useState(false);
-  const [courseStatus, setCourseStatus] = useState(false);
+  const [courseStatus, setCourseStatus] = useState(true);
   const [resultData, setResultData] = useState([
     {
       name: "First",
@@ -32,17 +33,18 @@ function CreateResult() {
   ]);
 
   let submitForm = () => {
-    setIsLoader(true);
     model.isShowResult = courseStatus;
     model.result = resultData;
     console.log(model);
+    // setIsLoader(true);
+
     sendData(model, "results")
       .then((res) => {
-        setIsLoader(false);
+        // setIsLoader(true);
         console.log(res);
       })
       .catch((err) => {
-        setIsLoader(false);
+        // setIsLoader(true);
         console.log(err);
       });
   };
@@ -82,7 +84,7 @@ function CreateResult() {
               label={isLoader ? <CircularProgress color='error' /> : "Submit"}
               variant="contained"
               onClick={submitForm}
-            />
+            /> 
           </Grid>
 
           <Grid item md={12}>
