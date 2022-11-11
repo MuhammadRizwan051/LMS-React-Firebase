@@ -2,7 +2,9 @@ import React from 'react'
 
 function CourseForm() {
   return (
-    <div>Course</div>
+    <>
+      <h1>Course Form Page</h1>
+    </>
   )
 }
 

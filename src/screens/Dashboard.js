@@ -22,6 +22,8 @@ import Enrolled_Students from './Dashboard_screens/Enrolled_Students';
 import CourseForm from './Dashboard_screens/courseForm';
 import Quiz from './Dashboard_screens/createQuiz';
 import CreateResult from './Dashboard_screens/createResult';
+import Countries from './countries';
+import Cities from './cities';
 
 
 
@@ -56,6 +58,16 @@ function Dashboard(props) {
             name: 'Result',
             url: 'result',
             element: <CreateResult />
+        },
+        {
+            name: 'Countries',
+            url: 'countries',
+            element: <Countries />
+        },
+        {
+            name: 'Cities',
+            url: 'cities',
+            element: <Cities />
         },
     ]
 

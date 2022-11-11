@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
+import { getData } from '../config/firebasemethod'
 
 function SelectBox(props) {
-    const { label, value, onChange, disabled, datasource, required, fullWidth, displayField, valueField } = props
+    const { label, value, onChange, disabled, datasource, required, fullWidth, displayField, valueField, nodeName } = props
+
+    const [dtSource, setDtSource] = useState(datasource)
+
+    let getNodeData = () => {
+        if (nodeName) {
+            getData(nodeName).then((res) => {
+                console.log(res)
+                setDtSource(res)
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+    }
+
+    useEffect(() => {
+        getNodeData()
+    }, [])
+
     return (
         <>
             <FormControl fullWidth>
@@ -17,7 +36,7 @@ function SelectBox(props) {
                     onChange={onChange}
                     disabled={disabled}
                 >
-                    {datasource && datasource.length > 0 ? datasource.map((e, i) => <MenuItem value={e[valueField ? valueField : 'id']} key={i}>
+                    {dtSource && dtSource.length > 0 ? dtSource.map((e, i) => <MenuItem value={e[valueField ? valueField : 'id']} key={i}>
                         {e[displayField ? displayField : 'fullName']}</MenuItem>) : null}
                 </Select>
             </FormControl>
