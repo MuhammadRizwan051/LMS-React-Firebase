@@ -140,3 +140,30 @@
 .adminQuestion{
   background-image: linear-gradient(to top, #f5882f, #f7fa55);
 }
+
+
+table{
+  width: 100%;
+  background-color: rgb(240,240,240);
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+  margin: 10px 0;
+  border-spacing: 0;
+}
+table th{
+  background-color: darkslategray;
+  color: white;
+}
+table tr:nth-child(even){
+  background-color: lightgrey;
+}
+table tr{
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+table td, table th{
+  padding: 15px
+}
+.rowHover:hover{
+  background-color: rgb(80, 80, 80);
+  color: white;
+}

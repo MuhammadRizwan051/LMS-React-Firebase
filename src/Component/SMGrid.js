@@ -1,5 +1,5 @@
 function SMGrid(props) {
-    const { datasource, Cols } = props;
+    const { datasource, Cols, onRowClick } = props;
 
     console.log(datasource, Cols);
 
@@ -20,7 +20,7 @@ function SMGrid(props) {
                             Array.isArray(datasource) &&
                             datasource.length > 0 ? (
                             datasource.map((x, i) => (
-                                <tr key={i}>
+                                <tr onClick={()=>onRowClick(x)} className={onRowClick ? "rowHover" : ""} key={i}>
                                     <td>{i + 1}</td>
                                     {Cols.map((y, ind) => (
                                         <td key={ind}>{x[y.key]}</td>

@@ -32,7 +32,7 @@ function Quiz() {
 
   let next = () => {
     setIndexNumber(indexNumber + 1)
-    if (indexNumber + 1 === quiz.length) {
+    if (indexNumber + 1 === quiz[0].questionsArray.length) {
       setShowResult(true)
     }
   }
@@ -67,13 +67,13 @@ function Quiz() {
                   <>
                     <Grid item md={6} mx={3} mb={4} sx={{ textAlign: 'left', borderRadius: '15px', backgroundColor: 'lightGrey' }}>
                       <Box px={3} py={1} >
-                        <Typography variant='h6'>{quiz[indexNumber].questions[0].question}</Typography>
+                        <Typography variant='h6'>{quiz[0].questionsArray[indexNumber].question}</Typography>
                       </Box>
                     </Grid>
-                    {quiz[indexNumber].questions[0].options.map((o, i) => (
+                    {quiz[0].questionsArray[indexNumber].options.map((y, i) => (
                       <Grid item md={6} mt={2} mx={3} sx={{ textAlign: 'left', borderRadius: '15px', borderBottom: '1px solid black' }}>
                         <Box px={1} py={0} >
-                          <Typography variant='h6'><Checkbox size='small' />{o}</Typography>
+                          <Typography variant='h6'><Checkbox size='small' />{y}</Typography>
                         </Box>
                       </Grid>
                     ))}

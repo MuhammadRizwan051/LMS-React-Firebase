@@ -41,42 +41,42 @@ function Countries() {
         <>
             {isLoading ? <CircularProgress />
                 :
-
-                (<>
-                    <Container>
-                        <h1>Countries</h1>
-                        <Grid container>
-                            <Grid item md={4} sx={{ padding: 2 }}>
-                                <Input label='Country Name' onChange={(e) => setModel({ ...model, countryName: e.target.value })} />
+                (
+                    <>
+                        <Container>
+                            <h1>Countries</h1>
+                            <Grid container>
+                                <Grid item md={4} sx={{ padding: 2 }}>
+                                    <Input label='Country Name' onChange={(e) => setModel({ ...model, countryName: e.target.value })} />
+                                </Grid>
+                                <Grid item md={4} sx={{ padding: 2 }}>
+                                    <Input label='Country Code' onChange={(e) => setModel({ ...model, countryCode: e.target.value })} />
+                                </Grid>
+                                <Grid item md={4} sx={{ padding: 2 }}>
+                                    <Input label='Currency' onChange={(e) => setModel({ ...model, currency: e.target.value })} />
+                                </Grid>
+                                <Grid item md={4} sx={{ padding: 2 }}>
+                                    <MyButton label='Save' onClick={saveCountry} />
+                                </Grid>
                             </Grid>
-                            <Grid item md={4} sx={{ padding: 2 }}>
-                                <Input label='Country Code' onChange={(e) => setModel({ ...model, countryCode: e.target.value })} />
-                            </Grid>
-                            <Grid item md={4} sx={{ padding: 2 }}>
-                                <Input label='Currency' onChange={(e) => setModel({ ...model, currency: e.target.value })} />
-                            </Grid>
-                            <Grid item md={4} sx={{ padding: 2 }}>
-                                <MyButton label='Save' onClick={saveCountry} />
-                            </Grid>
-                        </Grid>
-                    </Container>
-                    <Container>
-                        <SMGrid datasource={list} Cols={[
-                            {
-                                displayName: 'Country Name',
-                                key: 'countryName'
-                            },
-                            {
-                                displayName: 'Country Code',
-                                key: 'countryCode'
-                            },
-                            {
-                                displayName: 'Local Currency',
-                                key: 'currency'
-                            }
-                        ]} />
-                    </Container>
-                </>
+                        </Container>
+                        <Container>
+                            <SMGrid datasource={list} onRowClick={(e)=>console.log(e)} Cols={[
+                                {
+                                    displayName: 'Country Name',
+                                    key: 'countryName'
+                                },
+                                {
+                                    displayName: 'Country Code',
+                                    key: 'countryCode'
+                                },
+                                {
+                                    displayName: 'Local Currency',
+                                    key: 'currency'
+                                }
+                            ]} />
+                        </Container>
+                    </>
                 )
             }
         </>

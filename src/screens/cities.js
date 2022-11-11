@@ -12,13 +12,17 @@ function Cities() {
     const [model, setModel] = useState({})
     const [list, setList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [btnLoading, setBtnLoading] = useState(false)
 
 
     let saveCity = () => {
+        setBtnLoading(true)
         console.log(model)
         sendData(model, 'cities').then((res) => {
+            setBtnLoading(false)
             console.log(res)
         }).catch((err) => {
+            setBtnLoading(false)
             console.log(err)
         })
     }
@@ -57,28 +61,28 @@ function Cities() {
                                 <Input label='City Code' onChange={(e) => setModel({ ...model, cityCode: e.target.value })} />
                             </Grid>
                             <Grid item md={4} sx={{ padding: 2 }}>
-                                <MyButton label='Save' onClick={saveCity} />
+                                <MyButton label={btnLoading ? <CircularProgress /> : 'Save'} onClick={saveCity} />
                             </Grid>
                         </Grid>
                     </Container>
                     <Container>
                         <SMGrid datasource={list} Cols={[
                             {
-                                displayName: 'Id',
-                                key: 'id'
+                                displayName: 'CityCode',
+                                key: 'cityCode'
                             },
                             {
                                 displayName: 'CityName',
                                 key: 'cityName'
                             },
                             {
-                                displayName: 'CityCode',
-                                key: 'cityCode'
-                            },
-                            {
                                 displayName: 'CountryCode',
                                 key: 'countryCode'
                             },
+                            {
+                                displayName: 'Id',
+                                key: 'id'
+                            }
                         ]} />
                     </Container>
                 </>
