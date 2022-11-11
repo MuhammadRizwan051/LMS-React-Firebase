@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import MyButton from '../Component/Button'
 import Input from '../Component/Input'
 import SelectBox from '../Component/Select'
+import SMGrid from '../Component/SMGrid'
 import { getData, sendData } from '../config/firebasemethod'
 
 
 function Cities() {
     const [model, setModel] = useState({})
+    const [list, setList] = useState([])
 
     let saveCity = () => {
         console.log(model)
@@ -21,6 +23,7 @@ function Cities() {
     let getCityData = () => {
         getData('cities').then((res) => {
             console.log(res)
+            setList(res)
         }).catch((err) => {
             console.log(err)
         })
@@ -48,6 +51,26 @@ function Cities() {
                         <MyButton label='Save' onClick={saveCity} />
                     </Grid>
                 </Grid>
+            </Container>
+            <Container>
+                <SMGrid datasource={list} Cols={[
+                    {
+                        displayName: 'Id',
+                        key: 'id'
+                    },
+                    {
+                        displayName: 'CityName',
+                        key: 'cityName'
+                    },
+                    {
+                        displayName: 'CityCode',
+                        key: 'cityCode'
+                    },
+                    {
+                        displayName: 'CountryCode',
+                        key: 'countryCode'
+                    },
+                ]} />
             </Container>
         </>
     )

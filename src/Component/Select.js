@@ -52,3 +52,13 @@ export default SelectBox
 //     fullName: 'abc'
 // }
 // console.log(obj.fullName) or console.log(obj['fullName'])
+
+
+// let obj = {
+//     id: 1,
+//     title: 'ABC'
+// }
+
+// let a = 'title'
+
+// console.log(obj[a])

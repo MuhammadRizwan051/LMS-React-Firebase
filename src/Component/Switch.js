@@ -5,7 +5,7 @@ function SMSwitch(props) {
 
   return (
     <>
-      <Switch label={label} onChange={onChange} value={value} />
+      <Switch checked={value} label={label} onChange={onChange} value={value} />
     </>
   )
 }
