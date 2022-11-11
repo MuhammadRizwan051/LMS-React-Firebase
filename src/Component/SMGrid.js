@@ -6,10 +6,10 @@ function SMGrid(props) {
     return (
         <>
             {Cols && Array.isArray(Cols) && (
-                <table style={{ width: "100%" }}>
+                <table style={{ width: "100%" }} align='left'>
                     <thead>
                         <tr>
-                            <th>s#</th>
+                            <th>S.No.</th>
                             {Cols.map((y, i) => (
                                 <th key={i}>{y.displayName}</th>
                             ))}
