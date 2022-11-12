@@ -6,6 +6,8 @@ import SelectBox from '../../Component/Select'
 import SMGrid from '../../Component/SMGrid'
 import { getData, sendData } from '../../config/firebasemethod'
 import CircularProgress from '@mui/material/CircularProgress'
+import loaderImage from "../../assets/loader.gif";
+
 
 
 function Cities() {
@@ -45,7 +47,7 @@ function Cities() {
 
     return (
         <>
-            {isLoading ? <CircularProgress />
+            {isLoading ? <img src={loaderImage} width='100vw' alt='loader' />
                 :
                 <>
                     <Container>

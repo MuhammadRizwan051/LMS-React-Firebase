@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import MainLayout from './mainLayout'
-import Quiz from './Quiz'
 import Enrolled_Students from './Admin_screens/Enrolled_Students'
 import CourseForm from './Admin_screens/courseForm'
 // import CreateQuiz from './Admin_screens/createQuiz'
@@ -9,12 +8,17 @@ import Countries from './Admin_screens/countries'
 import Cities from './Admin_screens/cities'
 import { checkUser } from '../config/firebasemethod'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import CreateQuiz from './Admin_screens/createQuiz'
+import AdminProfile from './Admin_screens/AdminProfile'
 
 function Admin() {
 
+    const params = useParams();
+    const paramsId = params.id
+    console.log(paramsId)
+
     let navigate = useNavigate()
     const location = useLocation();
-    const params = useParams();
     let [userId, setUserId] = useState('');
 
 
@@ -32,7 +36,7 @@ function Admin() {
         {
             name: 'Quiz',
             url: 'quizform',
-            element: <Quiz />
+            element: <CreateQuiz />
         },
         {
             name: 'Result',
@@ -51,36 +55,24 @@ function Admin() {
         },
     ]
 
+    let checkAuth = () => {
+        checkUser()
+            .then(() => {
+
+            })
+            .catch((err) => {
+                navigate('/')
+            })
+    }
 
     useEffect(() => {
-        // if (location.state && location.state.id) {
-        //     // setUser(location.state)
-        //     console.log(location.state)
-        //     // console.log(Object.values(location.state.id))
-        // } else {
-        //     // navigate("/");
-        // };
-        checkUser()
-            .then((res) => {
-                if (params.id == res.uid) {
-                    setUserId(res.uid);
-                    console.log(res)
-                    // getUserData();
-                }   
-                else {
-                    navigate("/")
-                }
-            }).catch((err) => {
-                console.log(err)
-            })
+        checkAuth()
     }, [])
-
-
 
     return (
         <>
             <h1>Admin</h1>
-            <MainLayout datasource={list} nodeName='/' userId={userId} />
+            <MainLayout datasource={list} userId={userId} nodeName='admin' profileNode={'profile'} state={{ userId: userId }} />
         </>
     )
 }

@@ -4,7 +4,8 @@ import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SMGrid from '../../Component/SMGrid'
 import { getData, sendData } from '../../config/firebasemethod'
-import CircularProgress from '@mui/material/CircularProgress'
+import loaderImage from "../../assets/loader.gif";
+
 
 
 function Countries() {
@@ -39,7 +40,7 @@ function Countries() {
 
     return (
         <>
-            {isLoading ? <CircularProgress />
+            {isLoading ? <img src={loaderImage} width='100vw' alt='loader' />
                 :
                 (
                     <>

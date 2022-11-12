@@ -138,7 +138,7 @@ let getData = (nodeName, id) => {
 };
 
 
-let signoutUser = () => {
+let logoutUser = () => {
   return new Promise((resolve, reject) => {
     signOut(auth)
       .then(() => {
@@ -154,4 +154,4 @@ let signoutUser = () => {
 
 
 
-export { signUpUser, loginUser, checkUser, sendData, getData, signoutUser };
+export { signUpUser, loginUser, checkUser, sendData, getData, logoutUser };

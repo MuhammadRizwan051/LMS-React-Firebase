@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { signoutUser } from "../config/firebasemethod";
+import { logoutUser } from "../config/firebasemethod";
 import { AccountCircle } from "@mui/icons-material";
 
 
@@ -47,18 +47,14 @@ function MainLayout(props) {
         setAnchorEl(event.currentTarget);
     };
 
-    const signout = () => {
-        setAnchorEl(null);
-        signoutUser(`${nodeName}/${userId}`)
-            .then(() => {
-                // setLoader(false)
-                navigate(`/${nodeName}`)
-            })
-            .catch((err) => {
-                // setLoader(false)
-                console.log(err)
-            })
-    };
+    const logout = () => {
+        logoutUser().then(() => {
+            navigate('/')
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     const profile = () => {
         setAnchorEl(null);
         navigate(`${profileNode}`, { state: state })
@@ -75,7 +71,6 @@ function MainLayout(props) {
             <Typography variant="h6" sx={{ my: 2, textAlign: "center" }}>
                 Dashboard
             </Typography>
-            <Toolbar />
             <Divider />
             <List>
                 {datasource.length > 0 && datasource.map((text, index) => (
@@ -151,7 +146,7 @@ function MainLayout(props) {
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={profile}>Profile</MenuItem>
-                                <MenuItem onClick={signout}>Log Out</MenuItem>
+                                <MenuItem onClick={logout}>Log Out</MenuItem>
                             </Menu>
                         </div>
                     )}

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import MyButton from '../Component/Button'
 import app from '../config/firebaseconfig'
 import { getData } from '../config/firebasemethod'
-import CircularProgress from '@mui/material/CircularProgress'
 import loaderImage from "../assets/loader.gif";
 
 
