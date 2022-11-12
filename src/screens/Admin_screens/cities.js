@@ -1,10 +1,10 @@
 import { Container, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import MyButton from '../Component/Button'
-import Input from '../Component/Input'
-import SelectBox from '../Component/Select'
-import SMGrid from '../Component/SMGrid'
-import { getData, sendData } from '../config/firebasemethod'
+import MyButton from '../../Component/Button'
+import Input from '../../Component/Input'
+import SelectBox from '../../Component/Select'
+import SMGrid from '../../Component/SMGrid'
+import { getData, sendData } from '../../config/firebasemethod'
 import CircularProgress from '@mui/material/CircularProgress'
 
 

@@ -58,7 +58,7 @@ function Quiz() {
               <>
                 <Grid container mb={5} pt={3} pb={5} sx={{ justifyContent: 'center' }}>
                   <Box sx={{ textAlign: 'center', width: 1 }} pb={2}>
-                    <Typography variant='h5' color='error' sx={{ fontWeight: 'bold' }}>{`${indexNumber + 1} of ${quiz.length}`}</Typography>
+                    <Typography variant='h5' color='error' sx={{ fontWeight: 'bold' }}>{`${indexNumber + 1} of ${quiz[0].questionsArray.length}`}</Typography>
                   </Box>
                   {/* <Box sx={{ textAlign: 'center', width: 1 }} pb={2}>
                   <Typography variant='h5' color='error' sx={{ fontWeight: 'bold' }}>{` Question: ${i + 1}`}</Typography>
@@ -78,7 +78,7 @@ function Quiz() {
                       </Grid>
                     ))}
                     <Grid item md={6} mt={2} mx={3} sx={{ textAlign: 'right' }}>
-                      <MyButton label={indexNumber + 1 == quiz.length ? "Finish" : "Next" } onClick={next} />
+                      <MyButton label={indexNumber + 1 == quiz[0].questionsArray.length ? "Finish" : "Next" } onClick={next} />
                     </Grid>
                   </>
                   {/* ))} */}

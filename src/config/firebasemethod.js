@@ -138,20 +138,20 @@ let getData = (nodeName, id) => {
 };
 
 
-// let signoutUser = () => {
-//   return new Promise((resolve, reject) => {
-//     signOut(auth)
-//       .then(() => {
-//         // Sign-out successful.
-//         resolve("user Logged Out successfully")
-//       })
-//       .catch((error) => {
-//         // An error happened.
-//         reject(error)
-//       });
-//   });
-// };
+let signoutUser = () => {
+  return new Promise((resolve, reject) => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        resolve("user Logged Out successfully")
+      })
+      .catch((error) => {
+        // An error happened.
+        reject(error)
+      });
+  });
+};
 
 
 
-export { signUpUser, loginUser, checkUser, sendData, getData };
+export { signUpUser, loginUser, checkUser, sendData, getData, signoutUser };

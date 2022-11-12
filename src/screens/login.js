@@ -19,7 +19,7 @@ function Login() {
     setIsLoading(true)
     loginUser({ userName, email, password })
       .then((success) => {
-        navigate(`/${success.id.slice(0, 8)}`)
+        navigate(`/admin/${success.id.slice(0, 8)}`)
         setIsLoading(false)
         // if (email !== 'admin@gmail.com') {
         //   navigate(`/${success.id.slice(0,8)}`)
