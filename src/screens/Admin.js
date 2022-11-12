@@ -72,7 +72,7 @@ function Admin() {
     return (
         <>
             <h1>Admin</h1>
-            <MainLayout datasource={list} nodeName='admin' profileNode={'adminProfile'} userId={userId}  />
+            <MainLayout datasource={list} profileNode={'adminProfile'} userId={userId}  />
         </>
     )
 }

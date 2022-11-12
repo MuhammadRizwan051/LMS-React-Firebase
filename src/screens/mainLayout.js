@@ -21,6 +21,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { logoutUser } from "../config/firebasemethod";
 import { AccountCircle } from "@mui/icons-material";
+import Enrolled_Students from "./Admin_screens/Enrolled_Students";
+import CourseForm from "./Admin_screens/courseForm";
+import CreateQuiz from "./Admin_screens/createQuiz";
+import CreateResult from "./Admin_screens/createResult";
+import Countries from "./Admin_screens/countries";
+import Cities from "./Admin_screens/cities";
+import AdminProfile from "./Admin_screens/AdminProfile";
 
 
 const drawerWidth = 240;
@@ -58,7 +65,6 @@ function MainLayout(props) {
     const profile = () => {
         setAnchorEl(null);
         navigate(`${profileNode}/${userId}`)
-
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -85,11 +91,11 @@ function MainLayout(props) {
                 ))}
             </List>
 
-            <ul>
+            {/* <ul>
                 {props.datasource.map((e, i) => {
                     <li>{e.name}</li>
                 })}
-            </ul>
+            </ul> */}
         </div>
     );
 
@@ -200,9 +206,13 @@ function MainLayout(props) {
             >
                 <Box>
                     <Routes>
-                        {datasource.map((e, i) => (
-                            <Route path={e.url} element={e.element} key={i} />
-                        ))}
+                            <Route path='enrolled-students' element={<Enrolled_Students />} />
+                            <Route path='courseform' element={<CourseForm />} />
+                            <Route path='quizform' element={<CreateQuiz />} />
+                            <Route path='result' element={<CreateResult />} />
+                            <Route path='countries' element={<Countries />} />
+                            <Route path='cities' element={<Cities />} />
+                            <Route path='adminProfile' element={<AdminProfile />} />
                     </Routes>
                 </Box>
             </Box>
