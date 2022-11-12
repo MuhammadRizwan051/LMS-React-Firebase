@@ -10,6 +10,7 @@ import Result from "../screens/result";
 import CourseForm from "../screens/Admin_screens/courseForm";
 import StudentProfile from "../screens/StudentProfile";
 import Admin from "../screens/Admin";
+import AdminProfile from "../screens/Admin_screens/AdminProfile";
 
 function AppRouter() {
   return (
@@ -17,15 +18,16 @@ function AppRouter() {
       <Router>
         <Routes>
           <Route path="signup" element={<Signup />} />
-          <Route path="/" element={<Login />} />
+          <Route path="login" element={<Login />} />
           <Route path="studentProfile/:id" element={<StudentProfile />} />
+          <Route path="adminProfile/:id" element={<AdminProfile />} />
           
           <Route path="quiz" element={<Quiz />} />
           <Route path="course" element={<CourseForm />} />
           <Route path="result" element={<Result />} />
           <Route path="form" element={<Student_Form />} />
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="admin/:id/*" element={<Admin />} />
+          <Route path="/*" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
 
         </Routes>

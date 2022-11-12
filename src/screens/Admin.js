@@ -9,17 +9,17 @@ import Cities from './Admin_screens/cities'
 import { checkUser } from '../config/firebasemethod'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import CreateQuiz from './Admin_screens/createQuiz'
-import AdminProfile from './Admin_screens/AdminProfile'
 
 function Admin() {
 
-    const params = useParams();
-    const paramsId = params.id
-    console.log(paramsId)
+    // const params = useParams();
+    // const paramsId = params.id
+    // console.log(paramsId)
+    const [userId, setUserId] = useState('')
 
     let navigate = useNavigate()
-    const location = useLocation();
-    let [userId, setUserId] = useState('');
+    // const location = useLocation();
+    // let [userId, setUserId] = useState('');
 
 
     const list = [
@@ -57,8 +57,8 @@ function Admin() {
 
     let checkAuth = () => {
         checkUser()
-            .then(() => {
-
+            .then((res) => {
+                setUserId(res)
             })
             .catch((err) => {
                 navigate('/')
@@ -72,7 +72,7 @@ function Admin() {
     return (
         <>
             <h1>Admin</h1>
-            <MainLayout datasource={list} userId={userId} nodeName='admin' profileNode={'profile'} state={{ userId: userId }} />
+            <MainLayout datasource={list} nodeName='admin' profileNode={'adminProfile'} userId={userId}  />
         </>
     )
 }

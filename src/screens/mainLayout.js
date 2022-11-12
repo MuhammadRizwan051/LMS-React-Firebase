@@ -57,7 +57,7 @@ function MainLayout(props) {
 
     const profile = () => {
         setAnchorEl(null);
-        navigate(`${profileNode}`, { state: state })
+        navigate(`${profileNode}/${userId}`)
 
     };
     const handleClose = () => {
