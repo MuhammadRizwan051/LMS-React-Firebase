@@ -1,18 +1,29 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid, Paper, Typography } from '@mui/material'
 import { Container } from '@mui/system'
-import React from 'react'
+import React, { useState } from 'react'
 import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
 
 function CourseForm() {
+  let [model, setModel] = useState({})
+  let [isCreateCourse, setIsCreateCourse] = useState(false)
 
   let create = () => {
-
+    setIsCreateCourse(true)
   }
 
   let available = () => {
 
+  }
+
+  let fillModel = (key, val) => {
+    model[key] = val
+    setModel({ ...model })
+  }
+
+  let submit = () => {
+    console.log(model)
   }
 
   return (
@@ -21,19 +32,65 @@ function CourseForm() {
       <MyButton label='Create Course' onClick={create}></MyButton>
       <MyButton label='Available Courses' onClick={available}></MyButton>
 
-      <Container>
-        <Grid container mt={4} spacing={2}>
-          <Grid item md={6} mb={2}>
-            <Input label='Course Name' />
-          </Grid>
-          <Grid item md={6}>
-            <SelectBox label='Course Duration' datasource={[]} />
-          </Grid>
-          <Grid item md={6}>
-            <Input label='Number of Quizes' />
-          </Grid>
-        </Grid>
-      </Container>
+      {isCreateCourse &&
+        <Container>
+          <Paper>
+            <Grid container mt={4} spacing={2} padding={5}>
+              <Grid item md={6} mb={2}>
+                <Input label='Course Name' onChange={(e) => fillModel('courseName', e.target.value)} />
+              </Grid>
+              <Grid item md={3}>
+                <SelectBox label='Course Duration (Months)' onChange={(e)=>fillModel('courseDuration', e.target.value)} datasource={[
+                  {
+                    id: 4,
+                    fullName: 4
+                  },
+                  {
+                    id: 8,
+                    fullName: 8
+                  }
+                ]} />
+              </Grid>
+              <Grid item md={3}>
+                <Input label='Number of Quizes' onChange={(e) => fillModel('numberOfQuizes', e.target.value)} />
+              </Grid>
+              <Grid item md={3} mb={2}>
+                <SelectBox label='Form Open (Y/N)' onChange={(e) => fillModel('formOpen', e.target.value)} datasource={[
+                  {
+                    id: 'Y',
+                    fullName: "Yes"
+                  },
+                  {
+                    id: 'N',
+                    fullName: "No"
+                  }
+                ]} />
+              </Grid>
+              <Grid item md={3} mb={2}>
+                <Input label='Fee in Rupees' onChange={(e) => fillModel('feeInRupees', e.target.value)} />
+              </Grid>
+              <Grid item md={6} mb={2}>
+                <Input label='Lead Trainer ID' onChange={(e) => fillModel('tleadTrainerID', e.target.value)} />
+              </Grid>
+              <Grid item md={6} mb={2}>
+                <SelectBox label='Assistant Trainers' onChange={(e) => fillModel('assistantTrainers', e.target.value)} datasource={[
+                  {
+                    id: 'Abdul Basit Ahmed',
+                    fullName: "Abdul Basit Ahmed"
+                  },
+                  {
+                    id: 'Ghous Ahmed',
+                    fullName: "Ghous Ahmed"
+                  }
+                ]} />
+              </Grid>
+              <Grid item md={12} mb={2}>
+                <MyButton label='Submit' onClick={submit} />
+              </Grid>
+            </Grid>
+          </Paper>
+        </Container>
+      }
     </>
   )
 }
