@@ -167,3 +167,12 @@ table td, table th{
   background-color: rgb(80, 80, 80);
   color: white;
 }
+
+:root{
+  --primary: #023047;
+  --light: #e3d5ca;
+}
+
+.bgLight{
+    background-color: var(--light)
+}

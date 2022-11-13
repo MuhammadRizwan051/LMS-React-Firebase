@@ -12,14 +12,9 @@ import CreateQuiz from './Admin_screens/createQuiz'
 
 function Admin() {
 
-    // const params = useParams();
-    // const paramsId = params.id
-    // console.log(paramsId)
     const [userId, setUserId] = useState('')
 
     let navigate = useNavigate()
-    // const location = useLocation();
-    // let [userId, setUserId] = useState('');
 
 
     const list = [
@@ -40,7 +35,7 @@ function Admin() {
         },
         {
             name: 'Result',
-            url: 'result',
+            url: 'createResult',
             element: <CreateResult />
         },
         {
@@ -72,7 +67,7 @@ function Admin() {
     return (
         <>
             <h1>Admin</h1>
-            <MainLayout datasource={list} profileNode={'adminProfile'} userId={userId}  />
+            <MainLayout datasource={list} profileNode={'adminProfile'} state={{ userId: userId}}  />
         </>
     )
 }
