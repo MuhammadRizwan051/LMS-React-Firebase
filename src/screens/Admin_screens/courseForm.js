@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
+import { sendData } from '../../config/firebasemethod'
 
 function CourseForm() {
   let [model, setModel] = useState({})
@@ -24,6 +25,17 @@ function CourseForm() {
 
   let submit = () => {
     console.log(model)
+
+    // Send data to firebase
+    sendData(model, `courses/`)
+      .then((res) => {
+        console.log(res);
+        alert('Course form has been submitted')
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('There is an error while submitting the form, Plz! submit again')
+      })
   }
 
   return (
@@ -40,7 +52,7 @@ function CourseForm() {
                 <Input label='Course Name' onChange={(e) => fillModel('courseName', e.target.value)} />
               </Grid>
               <Grid item md={3}>
-                <SelectBox label='Course Duration (Months)' onChange={(e)=>fillModel('courseDuration', e.target.value)} datasource={[
+                <SelectBox label='Course Duration (Months)' onChange={(e) => fillModel('courseDuration', e.target.value)} datasource={[
                   {
                     id: 4,
                     fullName: 4
@@ -70,7 +82,7 @@ function CourseForm() {
                 <Input label='Fee in Rupees' onChange={(e) => fillModel('feeInRupees', e.target.value)} />
               </Grid>
               <Grid item md={6} mb={2}>
-                <Input label='Lead Trainer ID' onChange={(e) => fillModel('tleadTrainerID', e.target.value)} />
+                <Input label='Lead Trainer ID' onChange={(e) => fillModel('leadTrainerID', e.target.value)} />
               </Grid>
               <Grid item md={6} mb={2}>
                 <SelectBox label='Assistant Trainers' onChange={(e) => fillModel('assistantTrainers', e.target.value)} datasource={[
