@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { getData } from '../../config/firebasemethod';
 import loaderImage from "../../assets/loader.gif";
+import SMGrid from '../../Component/SMGrid';
 
 
 
@@ -45,50 +46,76 @@ export default function Enrolled_Students() {
 
                         {isLoading ? <img src={loaderImage} width='100vw' alt='loader' />
                             :
-                            <TableContainer component={Paper}>
-                                <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell align='center'>Full Name</TableCell>
-                                            <TableCell align="center">Father</TableCell>
-                                            <TableCell align="center">Contact</TableCell>
-                                            <TableCell align="center">Course</TableCell>
-                                            <TableCell align="center">Section</TableCell>
-                                            <TableCell align="center">CNIC</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {
-                                            stdData.length > 0 ?
-                                                stdData.map((row, i) => (
-                                                    <TableRow
-                                                        key={i}
-                                                    >
-                                                        <TableCell component="th" scope="row">
-                                                            {`${row.firstName} ${row.lastName}`}
-                                                        </TableCell>
-                                                        <TableCell align="right">{row.fatherName}</TableCell>
-                                                        <TableCell align="right">{row.contact}</TableCell>
-                                                        <TableCell align="right">{row.course}</TableCell>
-                                                        <TableCell align="right">{row.section}</TableCell>
-                                                        <TableCell align="right">{row.cnic}</TableCell>
-                                                    </TableRow>
-                                                ))
-                                                : (
-                                                    <TableRow>
-                                                        <TableCell align="center"><CircularProgress /></TableCell>
-                                                        <TableCell align="center"><CircularProgress /></TableCell>
-                                                        <TableCell align="center"><CircularProgress /></TableCell>
-                                                        <TableCell align="center"><CircularProgress /></TableCell>
-                                                        <TableCell align="center"><CircularProgress /></TableCell>
-                                                        <TableCell align="center"><CircularProgress /></TableCell>
-                                                    </TableRow>
+                            <SMGrid datasource={stdData} Cols={[
+                                {
+                                    displayName:'Full Name',
+                                    key: 'firstName'
+                                },
+                                {
+                                    displayName:'Father Name',
+                                    key: 'fatherName'
+                                },
+                                {
+                                    displayName:'Contact',
+                                    key: 'contact'
+                                },
+                                {
+                                    displayName:'Course',
+                                    key: 'course'
+                                },
+                                {
+                                    displayName:'Section',
+                                    key: 'section'
+                                },
+                                {
+                                    displayName:'CNIC',
+                                    key: 'cnic'
+                                },
+                            ]} />
+                            // <TableContainer component={Paper}>
+                            //     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            //         <TableHead>
+                            //             <TableRow>
+                            //                 <TableCell align='center'>Full Name</TableCell>
+                            //                 <TableCell align="center">Father</TableCell>
+                            //                 <TableCell align="center">Contact</TableCell>
+                            //                 <TableCell align="center">Course</TableCell>
+                            //                 <TableCell align="center">Section</TableCell>
+                            //                 <TableCell align="center">CNIC</TableCell>
+                            //             </TableRow>
+                            //         </TableHead>
+                            //         <TableBody>
+                            //             {
+                            //                 stdData.length > 0 ?
+                            //                     stdData.map((row, i) => (
+                            //                         <TableRow
+                            //                             key={i}
+                            //                         >
+                            //                             <TableCell component="th" scope="row">
+                            //                                 {`${row.firstName} ${row.lastName}`}
+                            //                             </TableCell>
+                            //                             <TableCell align="right">{row.fatherName}</TableCell>
+                            //                             <TableCell align="right">{row.contact}</TableCell>
+                            //                             <TableCell align="right">{row.course}</TableCell>
+                            //                             <TableCell align="right">{row.section}</TableCell>
+                            //                             <TableCell align="right">{row.cnic}</TableCell>
+                            //                         </TableRow>
+                            //                     ))
+                            //                     : (
+                            //                         <TableRow>
+                            //                             <TableCell align="center"><CircularProgress /></TableCell>
+                            //                             <TableCell align="center"><CircularProgress /></TableCell>
+                            //                             <TableCell align="center"><CircularProgress /></TableCell>
+                            //                             <TableCell align="center"><CircularProgress /></TableCell>
+                            //                             <TableCell align="center"><CircularProgress /></TableCell>
+                            //                             <TableCell align="center"><CircularProgress /></TableCell>
+                            //                         </TableRow>
 
-                                                )
-                                        }
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                            //                     )
+                            //             }
+                            //         </TableBody>
+                            //     </Table>
+                            // </TableContainer>
                         }
                     </Grid>
                 </Grid>

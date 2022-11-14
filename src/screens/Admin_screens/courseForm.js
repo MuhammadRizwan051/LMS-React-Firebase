@@ -133,47 +133,47 @@ function CourseForm() {
         </Container>
       }
 
-      {/* {isLoading ? <img src={loaderImage} width='100vw' alt='loader' />
-        : */}
-        { isShowCourse &&
-        <Container>
-          <Paper>
-            <Grid container mt={4} spacing={2} padding={5}>
-              <SMGrid datasource={course} onRowClick={(e) => console.log(e)} Cols={[
-                {
-                  displayName: 'Course Name',
-                  key: 'courseName'
-                },
-                {
-                  displayName: 'Duration',
-                  key: 'courseDuration'
-                },
-                {
-                  displayName: 'Fees',
-                  key: 'feeInRupees'
-                },
-                {
-                  displayName: 'Form (Open/Close)',
-                  key: 'formOpen'
-                },
-                {
-                  displayName: 'Assistant Trainers',
-                  key: 'assistantTrainers'
-                },
-                {
-                  displayName: 'No of Quiz',
-                  key: 'numberOfQuizes'
-                },
-                {
-                  displayName: 'Lead Trainer ID',
-                  key: 'leadTrainerID'
-                }
-              ]} />
-            </Grid>
-          </Paper>
-        </Container>
-      } 
-      {/* } */}
+      {isShowCourse &&
+        (isLoading ? <img src={loaderImage} style={{display:'block', margin: '0 auto', height:'100px'}} alt='loader' />
+          :
+          <Container>
+            <Paper>
+              <Grid container mt={4} spacing={2} padding={5}>
+                <SMGrid datasource={course} onRowClick={(e) => console.log(e)} Cols={[
+                  {
+                    displayName: 'Course Name',
+                    key: 'courseName'
+                  },
+                  {
+                    displayName: 'Duration',
+                    key: 'courseDuration'
+                  },
+                  {
+                    displayName: 'Fees',
+                    key: 'feeInRupees'
+                  },
+                  {
+                    displayName: 'Form (Open/Close)',
+                    key: 'formOpen'
+                  },
+                  {
+                    displayName: 'Assistant Trainers',
+                    key: 'assistantTrainers'
+                  },
+                  {
+                    displayName: 'No of Quiz',
+                    key: 'numberOfQuizes'
+                  },
+                  {
+                    displayName: 'Lead Trainer ID',
+                    key: 'leadTrainerID'
+                  }
+                ]} />
+              </Grid>
+            </Paper>
+          </Container>
+        )
+      }
 
     </>
   )
