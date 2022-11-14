@@ -1,21 +1,29 @@
 import { Grid, Paper, Typography } from '@mui/material'
 import { Container } from '@mui/system'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
-import { sendData } from '../../config/firebasemethod'
+import SMGrid from '../../Component/SMGrid'
+import { getData, sendData } from '../../config/firebasemethod'
+import loaderImage from "../../assets/loader.gif";
+
 
 function CourseForm() {
   let [model, setModel] = useState({})
   let [isCreateCourse, setIsCreateCourse] = useState(false)
+  let [isShowCourse, setIsShowCourse] = useState(false)
+  let [isLoading, setIsLoading] = useState(true)
+
 
   let create = () => {
     setIsCreateCourse(true)
+    setIsShowCourse(false)
   }
 
   let available = () => {
-
+    setIsShowCourse(true)
+    setIsCreateCourse(false)
   }
 
   let fillModel = (key, val) => {
@@ -37,6 +45,27 @@ function CourseForm() {
         alert('There is an error while submitting the form, Plz! submit again')
       })
   }
+
+  let [course, setCourse] = useState("")
+
+  let getCourse = () => {
+    setIsLoading(true)
+    getData(`courses/`)
+      .then((res) => {
+        setIsLoading(false)
+        // setIsLoader(false)
+        setCourse(res)
+        console.log(res)
+      })
+      .catch((err) => {
+        setIsLoading(false)
+        // setIsLoader(false)
+        alert(err)
+      })
+
+  }
+  console.log(course)
+  useEffect(() => { getCourse() }, [])
 
   return (
     <>
@@ -103,6 +132,49 @@ function CourseForm() {
           </Paper>
         </Container>
       }
+
+      {/* {isLoading ? <img src={loaderImage} width='100vw' alt='loader' />
+        : */}
+        { isShowCourse &&
+        <Container>
+          <Paper>
+            <Grid container mt={4} spacing={2} padding={5}>
+              <SMGrid datasource={course} onRowClick={(e) => console.log(e)} Cols={[
+                {
+                  displayName: 'Course Name',
+                  key: 'courseName'
+                },
+                {
+                  displayName: 'Duration',
+                  key: 'courseDuration'
+                },
+                {
+                  displayName: 'Fees',
+                  key: 'feeInRupees'
+                },
+                {
+                  displayName: 'Form (Open/Close)',
+                  key: 'formOpen'
+                },
+                {
+                  displayName: 'Assistant Trainers',
+                  key: 'assistantTrainers'
+                },
+                {
+                  displayName: 'No of Quiz',
+                  key: 'numberOfQuizes'
+                },
+                {
+                  displayName: 'Lead Trainer ID',
+                  key: 'leadTrainerID'
+                }
+              ]} />
+            </Grid>
+          </Paper>
+        </Container>
+      } 
+      {/* } */}
+
     </>
   )
 }

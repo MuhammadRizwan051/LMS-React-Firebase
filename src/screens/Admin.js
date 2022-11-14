@@ -56,7 +56,7 @@ function Admin() {
                 setUserId(res)
             })
             .catch((err) => {
-                navigate('/')
+                navigate('login')
             })
     }
 
