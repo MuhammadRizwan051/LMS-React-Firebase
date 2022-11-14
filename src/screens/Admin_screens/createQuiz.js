@@ -1,11 +1,11 @@
 
 import { Box, Checkbox, FormControl, Grid, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import MyButton from '../../Component/Button'
 import Input from '../../Component/Input'
 import SelectBox from '../../Component/Select'
-import { sendData } from '../../config/firebasemethod'
+import { getData, sendData } from '../../config/firebasemethod'
 
 function CreateQuiz() {
     const [isCreateQuiz, setIsCreateQuiz] = useState(false)
@@ -58,6 +58,26 @@ function CreateQuiz() {
             }))
     }
 
+
+    // let [course, setCourse] = useState("")
+
+    // let getCourse = () => {
+    //     getData(`courses/`)
+    //         .then((res) => {
+    //             // setIsLoader(false)
+    //             setCourse(res)
+    //             console.log(res)
+    //         })
+    //         .catch((err) => {
+    //             // setIsLoader(false)
+    //             alert(err)
+    //         })
+
+    // }
+    // console.log(course)
+    // useEffect(() => { getCourse() }, [])
+
+
     // setQuestions([{ 'question': question, 'options': optionsArr, 'correct': correctOptionsArr }])
     // setQuestion('')
     // setOption('')
@@ -102,16 +122,8 @@ function CreateQuiz() {
                             <Input label='Quiz Duration' placeholder="Enter" disabled={isCreateQuiz} onChange={(e) => fillModel('duration', e.target.value)} />
                         </Grid>
                         <Grid item md={4}>
-                            <SelectBox label='Courses' disabled={isCreateQuiz} onChange={(e) => fillModel('course', e.target.value)} datasource={[
-                                {
-                                    id: 'wm',
-                                    fullName: 'Web & Mobile'
-                                },
-                                {
-                                    id: 'gd',
-                                    fullName: 'Graphic Designing'
-                                }
-                            ]} />
+                            <SelectBox label='Courses' disabled={isCreateQuiz} onChange={(e) => fillModel('course', e.target.value)} displayField='courseName' valueField='courseName' nodeName='courses' datasource={[]}
+                            />
                         </Grid>
                         <Grid item md={2}>
                             <Input label='Quiz Marks' placeholder="Enter" disabled={isCreateQuiz} onChange={(e) => fillModel('marks', e.target.value)} />
