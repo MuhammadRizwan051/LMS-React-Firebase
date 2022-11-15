@@ -27,8 +27,8 @@ function AppRouter() {
           <Route path="result" element={<Result />} />
           <Route path="form" element={<Student_Form />} />
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/:id/tn*" element={<Admin />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/*" element={<Admin />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
 
         </Routes>
       </Router>

@@ -56,7 +56,7 @@ function MainLayout(props) {
 
     const logout = () => {
         logoutUser().then(() => {
-            navigate('login')
+            navigate('/login')
         }).catch((err) => {
             console.log(err)
         })

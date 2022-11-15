@@ -13,7 +13,7 @@ import CreateQuiz from './Admin_screens/createQuiz'
 function Admin() {
 
     const [userId, setUserId] = useState('')
-
+    const param = useParams()
     let navigate = useNavigate()
 
 
@@ -56,7 +56,7 @@ function Admin() {
                 setUserId(res)
             })
             .catch((err) => {
-                navigate('login')
+                navigate('/login')
             })
     }
 
