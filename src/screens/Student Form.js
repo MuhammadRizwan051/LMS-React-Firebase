@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../Component/Input'
 import { Button, Grid, InputLabel, Typography } from '@mui/material'
 import SelectBox from '../Component/Select'
 import { Box } from '@mui/system'
 import '../App.css'
-import { sendData } from '../config/firebasemethod'
+import { getData, sendData } from '../config/firebasemethod'
 import { setDate } from '../config/core/helperMethod'
 // import Date_Picker from '../../Component/Date_Picker'
 
@@ -25,16 +25,34 @@ function Student_Form() {
     model.isActive = false
 
     console.log(model)
-    sendData(model,`studentsRecord/`)
-      .then((StudentInfo => { 
-        console.log(StudentInfo); 
+    sendData(model, `studentsRecord/`)
+      .then((StudentInfo => {
+        console.log(StudentInfo);
         alert('Your Form has been submitted')
       }))
-      .catch((err => { console.log(err); 
+      .catch((err => {
+        console.log(err);
         alert('Plz! submit again')
-       }))
+      }))
   }
 
+
+  const [dtSource, setDtSource] = useState([])
+
+  let getCourseData = () => {
+    getData('courses').then((res) => {
+      console.log(res)
+      setDtSource(res)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+  console.log(dtSource)
+
+  useEffect(() => {
+    getCourseData()
+  }, [])
 
   return (
     <>
@@ -49,12 +67,14 @@ function Student_Form() {
             <Input label='Last Name' onChange={(e) => fillModel('lastName', e.target.value)} value={model.lastName} />
           </Grid>
           <Grid item mt={5} md={6} sm={12} xs={12}>
-            <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[
-              {
-                id: 'wm',
-                fullName: 'Web And Mobile'
-              }
-            ]} />
+
+            <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[]} displayField='courseName' nodeName='courses' />
+             {/* <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[
+               {
+                 id: 'wm',
+                 fullName: 'Web And Mobile'
+               }
+             ]} /> */}
           </Grid>
           <Grid item mt={5} md={6} sm={12} xs={12}>
             {/* <InputLabel id="demo-simple-select-label">Section</InputLabel> */}
