@@ -17,7 +17,7 @@ function Signup() {
 
   let signUp = () => {
     setIsLoading(true)
-    signUpUser({ email, password, userName })
+    signUpUser({ email, password })
       .then((success) => {
         setIsLoading(false)
         // Signed in
@@ -48,14 +48,14 @@ function Signup() {
               Signup
             </Button>
           </Box>
-          <Box mt={4}>
+          {/* <Box mt={4}>
             <TextField
               label="UserName"
               variant="outlined"
               fullWidth
               onChange={(e) => setUserName(e.target.value)}
             />
-          </Box>
+          </Box> */}
           <Box mt={2}>
             <TextField
               label="Email"

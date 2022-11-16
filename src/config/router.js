@@ -11,6 +11,7 @@ import CourseForm from "../screens/Admin_screens/courseForm";
 import StudentProfile from "../screens/StudentProfile";
 import Admin from "../screens/Admin";
 import AdminProfile from "../screens/Admin_screens/AdminProfile";
+import Student from "../screens/Student";
 
 function AppRouter() {
   return (
@@ -28,6 +29,7 @@ function AppRouter() {
           <Route path="form" element={<Student_Form />} />
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/*" element={<Admin />} />
+          <Route path="student/*" element={<Student />} />
           {/* <Route path="*" element={<NotFound />} /> */}
 
         </Routes>

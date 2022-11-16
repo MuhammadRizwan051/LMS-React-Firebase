@@ -20,14 +20,14 @@ function Login() {
     loginUser({ userName, email, password })
       .then((success) => {
         // navigate(`/admin/${success.id.slice(0, 8)}`)
-        navigate(`/${success.id}`)
+        // navigate(`/${success.id}`)
         setIsLoading(false)
-        // if (email !== 'admin@gmail.com') {
-        //   navigate(`/${success.id.slice(0,8)}`)
-        // }
-        // else {
-        //   navigate('/dashboard')
-        // }
+        if (email === 'admin@gmail.com') {
+          navigate(`/${success.id}`)
+        }
+        else {
+          navigate(`/student/${success.id}`)
+        }
         console.log((success))
       })
       .catch((error) => {
@@ -50,14 +50,14 @@ function Login() {
               SignUp
             </Button>
           </Box>
-          <Box mt={4}>
+          {/* <Box mt={4}>
             <TextField
               label="User Name"
               variant="outlined"
               fullWidth
               onChange={(e) => setUserName(e.target.value)}
             />
-          </Box>
+          </Box> */}
           <Box mt={2}>
             <TextField
               label="Email"

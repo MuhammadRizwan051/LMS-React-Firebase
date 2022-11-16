@@ -14,12 +14,12 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 
 let signUpUser = (obj) => {
-  let { email, password, userName } = obj;
+  let { email, password } = obj;
 
   // === this promise will return on Signup page. ===
   return new Promise((resolve, reject) => {
     // === this "then" will give the status of Authentication. ===
-    createUserWithEmailAndPassword(auth, email, password, userName)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // user successfully registerd in authentication
         const user = userCredential.user;
