@@ -68,10 +68,10 @@ function Student_Form() {
             <Input label='Last Name' onChange={(e) => fillModel('lastName', e.target.value)} value={model.lastName} />
           </Grid>
           <Grid item mt={5} md={6} sm={12} xs={12}>
-            <Input label='Email' type='email' onChange={(e) => fillModel('email', e.target.value)} value={model.lastName} />
+            <Input label='Email' type='email' onChange={(e) => fillModel('email', e.target.value)} value={model.email} />
           </Grid>
           <Grid item mt={5} md={6} sm={12} xs={12}>
-            <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[]} displayField='courseName' nodeName='courses' />
+            <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[]} displayField='courseName' valueField='courseName' nodeName='courses' />
             {/* <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[
                {
                  id: 'wm',

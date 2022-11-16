@@ -60,6 +60,10 @@ export default function Enrolled_Students() {
                                     key: 'contact'
                                 },
                                 {
+                                    displayName:'Email',
+                                    key: 'email'
+                                },
+                                {
                                     displayName:'Course',
                                     key: 'course'
                                 },
@@ -71,6 +75,7 @@ export default function Enrolled_Students() {
                                     displayName:'CNIC',
                                     key: 'cnic'
                                 },
+                                
                             ]} />
                             // <TableContainer component={Paper}>
                             //     <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
