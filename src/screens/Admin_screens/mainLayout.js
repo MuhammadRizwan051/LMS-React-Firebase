@@ -19,19 +19,15 @@ import Typography from "@mui/material/Typography";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { logoutUser } from "../config/firebasemethod";
+import { logoutUser } from "../../config/firebasemethod";
 import { AccountCircle } from "@mui/icons-material";
-import Enrolled_Students from "./Admin_screens/Enrolled_Students";
-import CourseForm from "./Admin_screens/courseForm";
-import CreateQuiz from "./Admin_screens/createQuiz";
-import CreateResult from "./Admin_screens/createResult";
-import Countries from "./Admin_screens/countries";
-import Cities from "./Admin_screens/cities";
-import AdminProfile from "./Admin_screens/AdminProfile";
-import Quiz from "./Quiz";
-import StudentResult from "./result";
-import StudentProfile from "./StudentProfile";
-import Student_Form from "./Student Form";
+import Enrolled_Students from "./Enrolled_Students";
+import CourseForm from "./courseForm";
+import CreateQuiz from "./createQuiz";
+import CreateResult from "./createResult";
+import Countries from "./countries";
+import Cities from "./cities";
+import AdminProfile from "./AdminProfile";
 
 
 const drawerWidth = 240;
@@ -85,7 +81,7 @@ function MainLayout(props) {
 
         <div>
             <Typography variant="h6" sx={{ my: 2, textAlign: "center" }}>
-                Student
+                Admin
             </Typography>
             <Divider />
             <List>
@@ -210,10 +206,13 @@ function MainLayout(props) {
             >
                 <Box>
                     <Routes>
-                        <Route path='quiz' element={<Quiz />} />
-                        <Route path='result' element={<StudentResult />} />
-                        <Route path="form" element={<Student_Form />} />
-                        <Route path='studentProfile' element={<StudentProfile />} />
+                        <Route path='enrolled-students' element={<Enrolled_Students />} />
+                        <Route path='courseform' element={<CourseForm />} />
+                        <Route path='quizform' element={<CreateQuiz />} />
+                        <Route path='createResult' element={<CreateResult />} />
+                        <Route path='countries' element={<Countries />} />
+                        <Route path='cities' element={<Cities />} />
+                        <Route path='adminProfile' element={<AdminProfile />} />
                     </Routes>
                 </Box>
             </Box>

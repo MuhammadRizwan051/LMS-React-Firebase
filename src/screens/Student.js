@@ -9,6 +9,8 @@ import Cities from './Admin_screens/cities'
 import { checkUser } from '../config/firebasemethod'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import CreateQuiz from './Admin_screens/createQuiz'
+import Quiz from './Quiz'
+import StudentResult from './result'
 
 function Student() {
 
@@ -19,35 +21,15 @@ function Student() {
 
     const list = [
         {
-            name: 'Enrolled Students',
-            url: 'enrolled-students',
-            element: <Enrolled_Students />
-        },
-        {
-            name: 'Course',
-            url: 'courseform',
-            element: <CourseForm />
-        },
-        {
             name: 'Quiz',
-            url: 'quizform',
-            element: <CreateQuiz />
+            url: 'quiz',
+            element: <Quiz />
         },
         {
             name: 'Result',
-            url: 'createResult',
-            element: <CreateResult />
-        },
-        {
-            name: 'Countries',
-            url: 'countries',
-            element: <Countries />
-        },
-        {
-            name: 'Cities',
-            url: 'cities',
-            element: <Cities />
-        },
+            url: 'result',
+            element: <StudentResult />
+        }
     ]
 
     let checkAuth = () => {
@@ -67,7 +49,7 @@ function Student() {
     return (
         <>
             <h1>Student</h1>
-            <MainLayout datasource={list} profileNode={'adminProfile'} state={{ userId: userId}}  />
+            <MainLayout datasource={list} profileNode={'studentProfile'} state={{ userId: userId}}  />
         </>
     )
 }

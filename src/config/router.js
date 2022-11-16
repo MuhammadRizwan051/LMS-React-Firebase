@@ -19,7 +19,7 @@ function AppRouter() {
       <Router>
         <Routes>
           <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="studentProfile/:id" element={<StudentProfile />} />
           <Route path="adminProfile/:id" element={<AdminProfile />} />
           
@@ -28,8 +28,8 @@ function AppRouter() {
           <Route path="result" element={<Result />} />
           <Route path="form" element={<Student_Form />} />
           {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/*" element={<Admin />} />
-          <Route path="student/*" element={<Student />} />
+          <Route path="admin/:id/*" element={<Admin />} />
+          <Route path="student/:id/*" element={<Student />} />
           {/* <Route path="*" element={<NotFound />} /> */}
 
         </Routes>

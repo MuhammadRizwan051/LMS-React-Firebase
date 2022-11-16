@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import MainLayout from './mainLayout'
+import MainLayout from './Admin_screens/mainLayout'
 import Enrolled_Students from './Admin_screens/Enrolled_Students'
 import CourseForm from './Admin_screens/courseForm'
 // import CreateQuiz from './Admin_screens/createQuiz'
@@ -56,7 +56,7 @@ function Admin() {
                 setUserId(res)
             })
             .catch((err) => {
-                navigate('/login')
+                navigate('/')
             })
     }
 

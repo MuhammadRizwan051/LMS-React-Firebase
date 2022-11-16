@@ -6,8 +6,7 @@ import { Box } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 import '../App.css';
 import CircularProgress from "@mui/material/CircularProgress";
-
-
+import userImg from '../assets/user.png'
 
 
 function Signup() {
@@ -21,7 +20,7 @@ function Signup() {
       .then((success) => {
         setIsLoading(false)
         // Signed in
-        navigate('/login')
+        navigate('/')
         console.log(success);
       })
       .catch((error) => {
@@ -37,11 +36,12 @@ function Signup() {
   return (
     <>
       <Box className='signup'>
-        <Box className='main' px={4} py={5}>
+        <Box className='main' px={4} pt={5} pb={4}>
+        <img src={userImg} width='100' height='100' />
           <h2 variant="h1" align="center" color="error">Signup
           </h2>
           <Box mt={3}>
-            <Button variant="outlined" size="large" sx={{ width: '50%', fontWeight: 'bold', color: 'black' }} onClick={() => navigate('/login')}>
+            <Button variant="outlined" size="large" sx={{ width: '50%', fontWeight: 'bold', color: 'black' }} onClick={() => navigate('/')}>
               Login
             </Button>
             <Button className='button' variant="contained" size="large" sx={{ width: '50%' }} onClick={() => navigate('/signup')}>
@@ -79,7 +79,10 @@ function Signup() {
             </Button>
           </Box>
           <Box>
-            <Typography sx={{ fontWeight: 'bold', }}>Already have an account ? <Link to="/login" style={{ textDecoration: 'none' }}>LOGIN</Link></Typography>
+            <Typography sx={{ fontWeight: 'bold', }}>Already have an account ? <Link to="/" style={{ textDecoration: 'none' }}>LOGIN</Link></Typography>
+          </Box>
+          <Box mt={5} mb={0} py={2} sx={{border: '1px solid black', backgroundColor: 'black', borderTopRightRadius: '60px',borderBottomLeftRadius: '60px'}}>
+            <Typography onClick={()=>navigate('/form')} sx={{ fontWeight: 'bold', fontSize: '24px',  }}> <Link to="/signup" style={{ textDecoration: 'none', color: 'white', fontFamily:'verdana' }}>Registration Form</Link></Typography>
           </Box>
         </Box>
       </Box>
