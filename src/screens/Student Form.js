@@ -48,11 +48,12 @@ function Student_Form() {
     })
   }
 
-  console.log(dtSource)
 
   useEffect(() => {
     getCourseData()
   }, [])
+
+  console.log(dtSource)
 
   return (
     <>
@@ -69,7 +70,7 @@ function Student_Form() {
           <Grid item mt={5} md={6} sm={12} xs={12}>
 
             <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[]} displayField='courseName' nodeName='courses' />
-             {/* <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[
+            {/* <SelectBox label='Course' onChange={(e) => fillModel('course', e.target.value)} datasource={[
                {
                  id: 'wm',
                  fullName: 'Web And Mobile'

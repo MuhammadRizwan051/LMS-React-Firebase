@@ -6,21 +6,38 @@ function SelectBox(props) {
     const { label, value, onChange, disabled, datasource, required, fullWidth, displayField, valueField, nodeName } = props
 
     const [dtSource, setDtSource] = useState(datasource)
+    // const [arr, setArr] = useState([])
 
     let getNodeData = () => {
         if (nodeName) {
             getData(nodeName).then((res) => {
                 console.log(res)
                 setDtSource(res)
+                // let a = dtSource.map((e, i) => (
+                //     e.courseName
+                // ))
+                // console.log(a)
+                // let b = new Set([...a])
+                // console.log(b)
+                // setDtSource(b)
             }).catch((err) => {
                 console.log(err)
             })
         }
     }
 
+    // let abc = () => {
+
+    //     // let b = new Set([...arr])
+    // }
+
+
     useEffect(() => {
         getNodeData()
+        // abc()
     }, [])
+
+
 
     return (
         <>
